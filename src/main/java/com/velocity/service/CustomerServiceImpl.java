@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.velocity.exception.CustomerNotFoundException;
 import com.velocity.model.Customer;
 import com.velocity.repository.CustomerRepository;
 
@@ -21,6 +22,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer getCustomer(int id) {
 		Customer customer= customerRepository.findById(id);
+		if(customer == null)
+		{
+			throw new CustomerNotFoundException("Customer ID is not found in the database");
+		}
+		
 		return customer;
 	}
 
