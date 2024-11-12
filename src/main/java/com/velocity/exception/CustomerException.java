@@ -11,11 +11,13 @@ public class CustomerException {
 	private final String message;
 
 	public CustomerException(long timestamp, HttpStatus status, String message) {
-		super();
+		
+		System.out.println("Inside Customer Exception class..");
 		this.timestamp = timestamp;
 		this.status = status;
 		this.message = message;
 	}
+	
 
 	public long getTimestamp() {
 		return timestamp;
