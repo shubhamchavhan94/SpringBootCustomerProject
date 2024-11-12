@@ -22,7 +22,8 @@ public class CustomerRestController {
 	@GetMapping("/customers/{id}")
 	public Customer getCustomer(@PathVariable int id) {
 		Customer customer = customerService.getCustomer(id);
-		System.out.println("HellO.......");
+		
+		System.out.println("Hello");
 		return customer;
 		
 	}
