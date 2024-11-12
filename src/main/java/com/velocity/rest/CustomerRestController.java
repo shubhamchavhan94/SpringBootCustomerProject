@@ -24,6 +24,8 @@ public class CustomerRestController {
 		Customer customer = customerService.getCustomer(id);
 		
 		System.out.println("Hello");
+
+		System.out.println("hello controller");
 		return customer;
 		
 	}
