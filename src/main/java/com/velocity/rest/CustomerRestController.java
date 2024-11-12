@@ -25,6 +25,7 @@ public class CustomerRestController {
 		
 		System.out.println("Hello");
 		System.out.println("hello everyone");
+		System.out.println("Good Afternoon...");
 		System.out.println("hello controller");
 		return customer;
 		
