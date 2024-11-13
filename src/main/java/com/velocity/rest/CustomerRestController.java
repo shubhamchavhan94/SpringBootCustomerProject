@@ -36,6 +36,13 @@ public class CustomerRestController {
 			@RequestParam(defaultValue = "10") int pageSize) {
 		List<Customer> pagination = customerService.getPagination(pageNo, pageSize);
 		return pagination;
+	}	
+	
+	//get operation based on city
+	@GetMapping("/customers/getCity/{city}")
+	public List<Customer> getByCity(@PathVariable("city") String city){
+		List<Customer> list = customerService.getByCity(city);
+		return list;
 	}
 
 	@GetMapping("/customers/getName/{name}")

@@ -48,4 +48,11 @@ public class CustomerServiceImpl implements CustomerService {
 		List<Customer> byName = customerRepository.findByName(name);
 		return byName;
 	}
+
+	@Override
+	public List<Customer> getByCity(String city) {
+		List<Customer>  customer=customerRepository.findByCity(city);
+		return customer;
+	}
+
 }
