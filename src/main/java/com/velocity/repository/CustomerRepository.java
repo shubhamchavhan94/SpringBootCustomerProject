@@ -10,13 +10,17 @@ import com.velocity.model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-	
-	//get operation based on id
+
+	// get operation based on id
 	public Customer findById(int id);
 	
 	//method for get operation on city
 	//create native query as we fetching the data based on city
 	@Query(value = "select * from customer c where city=?1",nativeQuery = true)
 	public List<Customer> findByCity(String city);
+
+	// get customer by sorting by name
+	@Query(value = "select * from customer c where name = ?1 ", nativeQuery = true)
+	public List<Customer> findByName(String name);
 
 }
