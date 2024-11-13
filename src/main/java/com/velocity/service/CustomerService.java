@@ -12,4 +12,7 @@ public interface CustomerService {
 	
 	//to get record per page 
 	public List<Customer> getPagination(int pageNo,int pageSize);
+	
+	//get operation based on city
+	public List<Customer> getByCity(String city);
 }
