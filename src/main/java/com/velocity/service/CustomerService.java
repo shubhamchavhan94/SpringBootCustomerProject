@@ -6,10 +6,14 @@ import com.velocity.model.Customer;
 
 public interface CustomerService {
 
-	
-	//get operation based on id
+	// get operation based on id
 	public Customer getCustomer(int id);
-	
-	//to get record per page 
-	public List<Customer> getPagination(int pageNo,int pageSize);
+
+	// to get record per page
+	public List<Customer> getPagination(int pageNo, int pageSize);
+
+	// to get record by name
+
+	public List<Customer> getCustomerByName(String name);
+
 }

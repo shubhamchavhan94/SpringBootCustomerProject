@@ -22,18 +22,25 @@ public class CustomerRestController {
 	@GetMapping("/customers/{id}")
 	public Customer getCustomer(@PathVariable int id) {
 		Customer customer = customerService.getCustomer(id);
-		
+
 		System.out.println("Hello");
 		System.out.println("hello everyone");
 		System.out.println("Good Morning...");
 		System.out.println("hello controller");
 		return customer;
-		
+
 	}
+
 	@GetMapping("/customers")
 	public List<Customer> getPagination(@RequestParam(defaultValue = "0") int pageNo,
-			                           @RequestParam(defaultValue = "10") int pageSize){
+			@RequestParam(defaultValue = "10") int pageSize) {
 		List<Customer> pagination = customerService.getPagination(pageNo, pageSize);
 		return pagination;
-	}	
+	}
+
+	@GetMapping("/customers/getName/{name}")
+	public List<Customer> getCustomerByName(@PathVariable("name") String name) {
+		List<Customer> customerByName = customerService.getCustomerByName(name);
+		return customerByName;
+	}
 }
