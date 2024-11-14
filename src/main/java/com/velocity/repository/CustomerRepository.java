@@ -15,7 +15,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	public Customer findById(int id);
 
 	// get customer by sorting by name
-	@Query(value = "select * from customer c where name = ?1 ", nativeQuery = true)
+	@Query(value = "select * from customer c where name = ?1", nativeQuery = true)
 	public List<Customer> findByName(String name);
 
 }
