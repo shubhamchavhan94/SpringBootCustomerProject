@@ -56,12 +56,6 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer saveCustomer(Customer customer) {
-		Customer save = customerRepository.save(customer);
-		return save;
-	}
-
-	@Override
 	public List<Customer> getAllCustomers(Customer customer) {
 		List<Customer> list = customerRepository.findAll();
 		return list;
@@ -76,7 +70,6 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void deleteCustomer(Integer id) {
 		customerRepository.deleteById(id);
-
 	}
 
 }

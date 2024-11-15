@@ -22,15 +22,11 @@ public class CustomerRestController {
 
 	@Autowired
 	private CustomerService customerService;
-
+  
+	// get operation based on id
 	@GetMapping("/customers/{id}")
 	public Customer getCustomer(@PathVariable int id) {
 		Customer customer = customerService.getCustomer(id);
-
-		System.out.println("Hello");
-		System.out.println("hello everyone");
-		System.out.println("Good Morning...");
-		System.out.println("hello controller");
 		return customer;
 
 	}
@@ -54,8 +50,6 @@ public class CustomerRestController {
 		List<Customer> customerByName = customerService.getCustomerByName(name);
 		return customerByName;
 	}
-
-	// ---------------------
 	// save customer operation
 	@PostMapping("/customers/save")
 	public Customer saveCustomer(@RequestBody Customer customer) {
