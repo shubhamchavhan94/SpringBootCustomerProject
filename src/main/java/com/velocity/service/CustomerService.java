@@ -5,29 +5,28 @@ import java.util.List;
 import com.velocity.model.Customer;
 
 public interface CustomerService {
-
-	// save operation on customer
-	public Customer saveCustomer(Customer customer);
-	
-	//update operation on customer
-	public Customer updateCustomer(Customer customer);
-	
-	// get the List customer data
-	public List<Customer> getAllCustomer(Customer customer);
 	
 	// get operation based on id
 	public Customer getCustomer(int id);
-	
-	// delete operation on customer based on id
-	public void deleteCustomerById(int id);
-
 	
 	//perform pagination to get record per page 
 	public List<Customer> getPagination(int pageNo,int pageSize);
 	
 	//get operation based on city
 	public List<Customer> getByCity(String city);
-
-	// to get record by name
+  
+	// get operation based on name
 	public List<Customer> getCustomerByName(String name);
+
+	// save customer operation
+	public Customer saveCustomer(Customer customer);
+
+	// get all customers operation
+	public List<Customer> getAllCustomers(Customer customer);
+
+	// update customer operation
+	public Customer updateCustomer(Customer customer);
+
+	// delete customer operation
+	public void deleteCustomer(Integer id);
 }

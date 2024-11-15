@@ -20,7 +20,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	public List<Customer> findByCity(String city);
 
 	// get customer by sorting by name
-	@Query(value = "select * from customer c where name = ?1 ", nativeQuery = true)
+	@Query(value = "select * from customer c where name = ?1", nativeQuery = true)
 	public List<Customer> findByName(String name);
 
 	// method to delete the customer data based on id
@@ -28,5 +28,4 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	
 	// get the all customer
 	public List<Customer> findAll();
-
 }

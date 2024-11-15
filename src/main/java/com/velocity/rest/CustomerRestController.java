@@ -22,22 +22,7 @@ public class CustomerRestController {
 
 	@Autowired
 	private CustomerService customerService;
-
-	// save operation on customer
-	@PostMapping("/customers")
-	public Customer saveCustomer(@RequestBody Customer customer) {
-		Customer customer2 = customerService.saveCustomer(customer);
-		return customer2;
-
-	}
-
-	// get the list of customers
-	@GetMapping("/customers/all")
-	public List<Customer> getAllCustomer(Customer customer) {
-		List<Customer> customer2 = customerService.getAllCustomer(customer);
-		return customer2;
-	}
-
+  
 	// get operation based on id
 	@GetMapping("/customers/{id}")
 	public Customer getCustomer(@PathVariable int id) {
@@ -46,18 +31,11 @@ public class CustomerRestController {
 
 	}
 
-	// update operation on customer
-	@PutMapping("/customers")
-	public Customer updateCustomer(@RequestBody Customer customer) {
-		Customer customer2 = customerService.updateCustomer(customer);
-		return customer2;
-	}
-
-	// delete operation on customer based on id
-	@DeleteMapping("/customers/{id}")
-	public void deleteCustomerById(@PathVariable int id) {
-		customerService.deleteCustomerById(id);
-
+	@GetMapping("/customers")
+	public List<Customer> getPagination(@RequestParam(defaultValue = "0") int pageNo,
+			@RequestParam(defaultValue = "10") int pageSize) {
+		List<Customer> pagination = customerService.getPagination(pageNo, pageSize);
+		return pagination;
 	}
 
 	// get operation based on city
@@ -72,12 +50,31 @@ public class CustomerRestController {
 		List<Customer> customerByName = customerService.getCustomerByName(name);
 		return customerByName;
 	}
-
-	@GetMapping("/customers")
-	public List<Customer> getPagination(@RequestParam(defaultValue = "0") int pageNo,
-			@RequestParam(defaultValue = "10") int pageSize) {
-		List<Customer> pagination = customerService.getPagination(pageNo, pageSize);
-		return pagination;
+	// save customer operation
+	@PostMapping("/customers/save")
+	public Customer saveCustomer(@RequestBody Customer save) {
+		Customer saveCustomer = customerService.saveCustomer(save);
+		return saveCustomer;
 	}
 
+	// get all customers operation
+	@GetMapping("/customers/getall")
+	public List<Customer> getAllCustomers(Customer customer){
+		List<Customer> allCustomers = customerService.getAllCustomers(customer);
+		return allCustomers;
+	}
+
+	// update customer operation
+	@PutMapping("/customers/update")
+	public Customer updateCustomer(@RequestBody Customer update) {
+		Customer updateCustomer = customerService.updateCustomer(update);
+		return updateCustomer;
+	}
+
+	// delete customer operation
+	@DeleteMapping("/customers/delete/{id}")
+	public String deleteCustomer(@PathVariable("id") Integer id) {
+		customerService.deleteCustomer(id);
+		return "Data deleted successfully";
+	}
 }
