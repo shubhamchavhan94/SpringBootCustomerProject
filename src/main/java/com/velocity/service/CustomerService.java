@@ -9,14 +9,25 @@ public interface CustomerService {
 	// get operation based on id
 	public Customer getCustomer(int id);
 
-	
-	//to get record per page 
-	public List<Customer> getPagination(int pageNo,int pageSize);
-	
-	//get operation based on city
+	// to get record per page
+	public List<Customer> getPagination(int pageNo, int pageSize);
+
+	// get operation based on city
 	public List<Customer> getByCity(String city);
 
-	// to get record by name
-
+	// get operation based on name
 	public List<Customer> getCustomerByName(String name);
+
+	// ---------------------
+	// save customer operation
+	public Customer saveCustomer(Customer customer);
+
+	// get all customers operation
+	public List<Customer> getAllCustomers(Customer customer);
+
+	// update customer operation
+	public Customer updateCustomer(Customer customer);
+
+	// delete customer operation
+	public void deleteCustomer(Integer id);
 }

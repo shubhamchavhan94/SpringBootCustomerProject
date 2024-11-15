@@ -51,8 +51,32 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List<Customer> getByCity(String city) {
-		List<Customer>  customer=customerRepository.findByCity(city);
+		List<Customer> customer = customerRepository.findByCity(city);
 		return customer;
+	}
+
+	@Override
+	public Customer saveCustomer(Customer customer) {
+		Customer save = customerRepository.save(customer);
+		return save;
+	}
+
+	@Override
+	public List<Customer> getAllCustomers(Customer customer) {
+		List<Customer> list = customerRepository.findAll();
+		return list;
+	}
+
+	@Override
+	public Customer updateCustomer(Customer customer) {
+		Customer update = customerRepository.save(customer);
+		return update;
+	}
+
+	@Override
+	public void deleteCustomer(Integer id) {
+		customerRepository.deleteById(id);
+
 	}
 
 }

@@ -23,4 +23,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	@Query(value = "select * from customer c where name = ?1", nativeQuery = true)
 	public List<Customer> findByName(String name);
 
+	// get all customer 
+	
+	public List<Customer> findAll();
 }

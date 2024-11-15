@@ -3,8 +3,12 @@ package com.velocity.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,11 +40,11 @@ public class CustomerRestController {
 			@RequestParam(defaultValue = "10") int pageSize) {
 		List<Customer> pagination = customerService.getPagination(pageNo, pageSize);
 		return pagination;
-	}	
-	
-	//get operation based on city
+	}
+
+	// get operation based on city
 	@GetMapping("/customers/getCity/{city}")
-	public List<Customer> getByCity(@PathVariable("city") String city){
+	public List<Customer> getByCity(@PathVariable("city") String city) {
 		List<Customer> list = customerService.getByCity(city);
 		return list;
 	}
@@ -49,5 +53,34 @@ public class CustomerRestController {
 	public List<Customer> getCustomerByName(@PathVariable("name") String name) {
 		List<Customer> customerByName = customerService.getCustomerByName(name);
 		return customerByName;
+	}
+
+	// ---------------------
+	// save customer operation
+	@PostMapping("/customers/save")
+	public Customer saveCustomer(@RequestBody Customer save) {
+		Customer saveCustomer = customerService.saveCustomer(save);
+		return saveCustomer;
+	}
+
+	// get all customers operation
+	@GetMapping("/customers/getall")
+	public List<Customer> getAllCustomers(Customer customer){
+		List<Customer> allCustomers = customerService.getAllCustomers(customer);
+		return allCustomers;
+	}
+
+	// update customer operation
+	@PutMapping("/customers/update")
+	public Customer updateCustomer(@RequestBody Customer update) {
+		Customer updateCustomer = customerService.updateCustomer(update);
+		return updateCustomer;
+	}
+
+	// delete customer operation
+	@DeleteMapping("/customers/delete/{id}")
+	public String deleteCustomer(@PathVariable("id") Integer id) {
+		customerService.deleteCustomer(id);
+		return "Data deleted successfully";
 	}
 }
