@@ -58,8 +58,8 @@ public class CustomerRestController {
 	// ---------------------
 	// save customer operation
 	@PostMapping("/customers/save")
-	public Customer saveCustomer(@RequestBody Customer save) {
-		Customer saveCustomer = customerService.saveCustomer(save);
+	public Customer saveCustomer(@RequestBody Customer customer) {
+		Customer saveCustomer = customerService.saveCustomer(customer);
 		return saveCustomer;
 	}
 
@@ -72,8 +72,8 @@ public class CustomerRestController {
 
 	// update customer operation
 	@PutMapping("/customers/update")
-	public Customer updateCustomer(@RequestBody Customer update) {
-		Customer updateCustomer = customerService.updateCustomer(update);
+	public Customer updateCustomer(@RequestBody Customer customer) {
+		Customer updateCustomer = customerService.updateCustomer(customer);
 		return updateCustomer;
 	}
 
