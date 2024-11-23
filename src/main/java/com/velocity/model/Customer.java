@@ -52,12 +52,10 @@ public class Customer {
 	}
 
 	public void setName(String name) {
-		System.out.println("This is a setName() method");
 		this.name = name;
 	}
 
 	public String getCity() {
-		System.out.println("This is a getCity() method");
 		return city;
 	}
 
