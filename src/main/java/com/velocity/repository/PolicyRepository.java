@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.velocity.model.Policy;
 
 @Repository
-public interface PolicyRepository extends JpaRepository<Policy, Integer> {
+
+public interface PolicyRepository extends JpaRepository<Policy, Integer>{
 
 }

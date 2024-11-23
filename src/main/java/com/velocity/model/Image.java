@@ -1,11 +1,14 @@
 package com.velocity.model;
 
+
 import java.util.Arrays;
+
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,6 +40,7 @@ public class Image {
 	public void setId(int id) {
 		this.id = id;
 	}
+
 
 	public String getStatus() {
 		return status;

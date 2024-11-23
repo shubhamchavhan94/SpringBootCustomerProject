@@ -4,19 +4,35 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "policy")
 public class Policy {
 
-	// Id Name Status userId(Fk)
+	/*
+	 * Policy - Id Name Status
+	 * 
+	 */
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int id;
+	@NotEmpty
 	private String name;
+	@NotBlank
 	private String status;
-	private Integer userId;
+
+//	@JoinColumn(name = "customerId")
+	private Integer customerId;
+
 
 	public int getId() {
 		return id;
@@ -42,17 +58,20 @@ public class Policy {
 		this.status = status;
 	}
 
-	public Integer getUserId() {
-		return userId;
+
+	public Integer getCustomerId() {
+		return customerId;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setCustomerId(Integer customer) {
+		this.customerId = customer;
+
 	}
 
 	@Override
 	public String toString() {
-		return "Policy [id=" + id + ", name=" + name + ", status=" + status + ", userId=" + userId + "]";
+
+		return "Policy [id=" + id + ", name=" + name + ", status=" + status + ", customer=" + customerId + "]";
 	}
 
 }

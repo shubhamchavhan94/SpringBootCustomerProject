@@ -16,7 +16,6 @@ public class PolicyServiceImpl implements PolicyService {
 	public Policy savePolicy(Policy policy) {
 		Policy policy2 = policyRepository.save(policy);
 		return policy2;
-		
 	}
 
 }

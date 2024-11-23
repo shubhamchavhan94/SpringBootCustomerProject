@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.velocity.model.Claim;
 import com.velocity.model.Customer;
 import com.velocity.model.Policy;
 import com.velocity.service.ClaimService;
 import com.velocity.service.CustomerService;
 import com.velocity.service.PolicyService;
+
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api")
@@ -63,7 +67,7 @@ public class CustomerRestController {
 
 	// save customer operation
 	@PostMapping("/customers/save")
-	public Customer saveCustomer(@RequestBody Customer customer) {
+	public Customer saveCustomer(@RequestBody @Valid Customer customer) {
 		Customer saveCustomer = customerService.saveCustomer(customer);
 		return saveCustomer;
 	}
@@ -89,22 +93,34 @@ public class CustomerRestController {
 		return "Data deleted successfully";
 	}
 
-	@PostMapping("/customers/policy/claim")
-	public Customer saveCustomerPolicyClaaim(@RequestBody Customer customer) {
-		Customer customer2 = customerService.saveCustomer(customer);
+	// ---------
 
-		List<Policy> policyList = customer2.getPolicyList();
-
-		for (Policy policy : policyList) {
-			policy.setUserId(customer.getId());
+	@PostMapping("/customers/save/policy/claim")
+	public Customer saveCustomerPolicyClaim(@RequestBody @Valid Customer customer) {
+		
+		// save customer
+		Customer saveCustomer = customerService.saveCustomer(customer);
+		
+		// multiple policy
+		
+		List<Policy> policyList = saveCustomer.getPolicyList();
+		
+		for(Policy policy : policyList)
+		{
+			policy.setCustomerId(customer.getId());
 			policyService.savePolicy(policy);
 		}
-		List<Claim> claimList = customer2.getClaimList();
-
-		for (Claim claim : claimList) {
-			claim.setUserId(customer.getId());
+		
+		// multiple claim
+		
+		List<Claim> claimList = saveCustomer.getClaimList();
+		
+		for(Claim claim : claimList) {
+			claim.setCustomerId(customer.getId());
 			claimService.saveClaim(claim);
 		}
-		return customer2;
+		
+		return saveCustomer;
+		
 	}
 }

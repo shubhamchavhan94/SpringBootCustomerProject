@@ -8,6 +8,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "customer")
@@ -16,16 +20,24 @@ public class Customer {
 	// id,name,city
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private int id;
+	
+	@NotEmpty
 	private String name;
+	
+	@NotEmpty
+	@Size(min = 3, max = 10)
 	private String city;
 
-	// Customers with multiple policy
-	@OneToMany(mappedBy = "userId")
+
+	@OneToMany(mappedBy = "customerId")
+	@NotEmpty
 	private List<Policy> policyList;
 
-	// customer with multiple claim
-	@OneToMany(mappedBy = "userId")
+	@OneToMany(mappedBy = "customerId")
+	@NotEmpty
+
 	private List<Claim> claimList;
 
 	public int getId() {
@@ -52,20 +64,20 @@ public class Customer {
 		this.city = city;
 	}
 
-	public List<Claim> getClaimList() {
-		return claimList;
-	}
-
-	public void setClaimList(List<Claim> claimList) {
-		this.claimList = claimList;
-	}
-
 	public List<Policy> getPolicyList() {
 		return policyList;
 	}
 
 	public void setPolicyList(List<Policy> policyList) {
 		this.policyList = policyList;
+	}
+
+	public List<Claim> getClaimList() {
+		return claimList;
+	}
+
+	public void setClaimList(List<Claim> claimList) {
+		this.claimList = claimList;
 	}
 
 	@Override

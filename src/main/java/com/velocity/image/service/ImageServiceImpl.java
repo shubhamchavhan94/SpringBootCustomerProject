@@ -30,5 +30,4 @@ public class ImageServiceImpl implements ImageService {
 		Image image = imageRepository.findById(id);
 		return image;
 	}
-
 }

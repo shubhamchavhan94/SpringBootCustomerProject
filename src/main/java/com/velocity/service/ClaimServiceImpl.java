@@ -11,12 +11,12 @@ public class ClaimServiceImpl implements ClaimService {
 
 	@Autowired
 	private ClaimRepository claimRepository;
-	
+
 	@Override
 	public Claim saveClaim(Claim claim) {
 		Claim claim2 = claimRepository.save(claim);
 		return claim2;
-		
+
 	}
 
 }
