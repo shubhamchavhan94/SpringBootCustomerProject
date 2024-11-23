@@ -13,8 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.velocity.image.service.ImageService;
+import com.velocity.model.Claim;
 import com.velocity.model.Customer;
+import com.velocity.model.Policy;
+import com.velocity.service.ClaimService;
 import com.velocity.service.CustomerService;
+import com.velocity.service.PolicyService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
@@ -22,7 +29,13 @@ public class CustomerRestController {
 
 	@Autowired
 	private CustomerService customerService;
-  
+
+	@Autowired
+	private PolicyService policyService;
+
+	@Autowired
+	private ClaimService claimService;
+
 	// get operation based on id
 	@GetMapping("/customers/{id}")
 	public Customer getCustomer(@PathVariable int id) {
@@ -50,16 +63,17 @@ public class CustomerRestController {
 		List<Customer> customerByName = customerService.getCustomerByName(name);
 		return customerByName;
 	}
+
 	// save customer operation
 	@PostMapping("/customers/save")
-	public Customer saveCustomer(@RequestBody Customer customer) {
+	public Customer saveCustomer(@RequestBody @Valid Customer customer) {
 		Customer saveCustomer = customerService.saveCustomer(customer);
 		return saveCustomer;
 	}
 
 	// get all customers operation
 	@GetMapping("/customers/getall")
-	public List<Customer> getAllCustomers(Customer customer){
+	public List<Customer> getAllCustomers(Customer customer) {
 		List<Customer> allCustomers = customerService.getAllCustomers(customer);
 		return allCustomers;
 	}
@@ -77,4 +91,36 @@ public class CustomerRestController {
 		customerService.deleteCustomer(id);
 		return "Data deleted successfully";
 	}
+
+	// ---------
+
+	@PostMapping("/customers/save/policy/claim")
+	public Customer saveCustomerPolicyClaim(@RequestBody @Valid Customer customer) {
+		
+		// save customer
+		Customer saveCustomer = customerService.saveCustomer(customer);
+		
+		// multiple policy
+		
+		List<Policy> policyList = saveCustomer.getPolicyList();
+		
+		for(Policy policy : policyList)
+		{
+			policy.setCustomerId(customer.getId());
+			policyService.savePolicy(policy);
+		}
+		
+		// multiple claim
+		
+		List<Claim> claimList = saveCustomer.getClaimList();
+		
+		for(Claim claim : claimList) {
+			claim.setCustomerId(customer.getId());
+			claimService.saveClaim(claim);
+		}
+		
+		return saveCustomer;
+		
+	}
+
 }
