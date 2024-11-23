@@ -59,6 +59,7 @@ public class Customer {
 	}
 
 	public String getCity() {
+		System.out.println("This is a getCity() method");
 		return city;
 	}
 
