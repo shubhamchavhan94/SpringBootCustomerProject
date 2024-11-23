@@ -44,12 +44,10 @@ public class Customer {
 	}
 
 	public void setId(int id) {
-		System.out.println("this is a setId() method");
 		this.id = id;
 	}
 
 	public String getName() {
-		System.out.println("this is a getName() method");
 		return name;
 	}
 
@@ -88,5 +86,4 @@ public class Customer {
 		return "Customer [id=" + id + ", name=" + name + ", city=" + city + ", policyList=" + policyList
 				+ ", claimList=" + claimList + "]";
 	}
-
 }
