@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.velocity.model.Claim;
 import com.velocity.model.Customer;
+import com.velocity.model.Policy;
+import com.velocity.service.ClaimService;
 import com.velocity.service.CustomerService;
+import com.velocity.service.PolicyService;
 
 @RestController
 @RequestMapping("/api")
@@ -22,7 +26,13 @@ public class CustomerRestController {
 
 	@Autowired
 	private CustomerService customerService;
-  
+
+	@Autowired
+	private PolicyService policyService;
+
+	@Autowired
+	private ClaimService claimService;
+
 	// get operation based on id
 	@GetMapping("/customers/{id}")
 	public Customer getCustomer(@PathVariable int id) {
@@ -50,6 +60,7 @@ public class CustomerRestController {
 		List<Customer> customerByName = customerService.getCustomerByName(name);
 		return customerByName;
 	}
+
 	// save customer operation
 	@PostMapping("/customers/save")
 	public Customer saveCustomer(@RequestBody Customer customer) {
@@ -59,7 +70,7 @@ public class CustomerRestController {
 
 	// get all customers operation
 	@GetMapping("/customers/getall")
-	public List<Customer> getAllCustomers(Customer customer){
+	public List<Customer> getAllCustomers(Customer customer) {
 		List<Customer> allCustomers = customerService.getAllCustomers(customer);
 		return allCustomers;
 	}
@@ -76,5 +87,24 @@ public class CustomerRestController {
 	public String deleteCustomer(@PathVariable("id") Integer id) {
 		customerService.deleteCustomer(id);
 		return "Data deleted successfully";
+	}
+
+	@PostMapping("/customers/policy/claim")
+	public Customer saveCustomerPolicyClaaim(@RequestBody Customer customer) {
+		Customer customer2 = customerService.saveCustomer(customer);
+
+		List<Policy> policyList = customer2.getPolicyList();
+
+		for (Policy policy : policyList) {
+			policy.setUserId(customer.getId());
+			policyService.savePolicy(policy);
+		}
+		List<Claim> claimList = customer2.getClaimList();
+
+		for (Claim claim : claimList) {
+			claim.setUserId(customer.getId());
+			claimService.saveClaim(claim);
+		}
+		return customer2;
 	}
 }
