@@ -78,4 +78,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return customer2;
 	}
 
+	@Override
+	public Customer saveCustomerPolicyClaim(Customer customer) {
+		Customer customer2 = customerRepository.save(customer);
+		return customer2;
+	}
+
 }

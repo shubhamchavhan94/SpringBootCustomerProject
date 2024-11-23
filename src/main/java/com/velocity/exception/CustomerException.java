@@ -1,16 +1,18 @@
 package com.velocity.exception;
 
+import java.util.Date;
+
 import org.springframework.http.HttpStatus;
 
 public class CustomerException {
 
 	// timestamp, status, message
 
-	private final long timestamp;
+	private final Date timestamp;
 	private final HttpStatus status;
 	private final String message;
 
-	public CustomerException(long timestamp, HttpStatus status, String message) {
+	public CustomerException(Date timestamp, HttpStatus status, String message) {
 		
 		System.out.println("Inside Customer Exception class..");
 		this.timestamp = timestamp;
@@ -19,7 +21,7 @@ public class CustomerException {
 	}
 	
 
-	public long getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 

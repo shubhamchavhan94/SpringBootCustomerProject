@@ -29,4 +29,8 @@ public interface CustomerService {
 
 	// delete customer operation
 	public void deleteCustomer(Integer id);
+	
+	// save customer operation
+	public Customer saveCustomerPolicyClaim(Customer customer);
+	
 }
