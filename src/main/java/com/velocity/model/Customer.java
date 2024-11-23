@@ -49,6 +49,7 @@ public class Customer {
 	}
 
 	public String getName() {
+		System.out.println("this is a getName() method");
 		return name;
 	}
 
