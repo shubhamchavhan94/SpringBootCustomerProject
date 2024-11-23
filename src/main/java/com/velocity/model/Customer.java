@@ -54,6 +54,7 @@ public class Customer {
 	}
 
 	public void setName(String name) {
+		System.out.println("This is a setName() method");
 		this.name = name;
 	}
 
