@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.velocity.image.service.ImageService;
+
 import com.velocity.model.Claim;
 import com.velocity.model.Customer;
 import com.velocity.model.Policy;
@@ -22,6 +22,7 @@ import com.velocity.service.CustomerService;
 import com.velocity.service.PolicyService;
 
 import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api")
@@ -122,5 +123,4 @@ public class CustomerRestController {
 		return saveCustomer;
 		
 	}
-
 }

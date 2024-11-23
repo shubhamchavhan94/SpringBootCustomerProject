@@ -8,7 +8,8 @@ import com.velocity.model.Image;
 
 public interface ImageService {
 
-	public Image uploadImage(MultipartFile file) throws IOException;
+	// to upload/save a file using multipart file
+	public Image saveImage(MultipartFile multipartFile) throws IOException;
 	
-	public Image getImage(Integer id);
+	public Image getImage(int id);
 }

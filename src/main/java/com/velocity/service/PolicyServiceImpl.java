@@ -7,7 +7,7 @@ import com.velocity.model.Policy;
 import com.velocity.repository.PolicyRepository;
 
 @Service
-public class PolicyServiceImpl implements PolicyService{
+public class PolicyServiceImpl implements PolicyService {
 
 	@Autowired
 	private PolicyRepository policyRepository;

@@ -1,33 +1,35 @@
 package com.velocity.model;
 
+
+import java.util.Arrays;
+
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "customer_images")
+@Table(name = "images")
 public class Image {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private String type;
-
-	@Lob
+	private String status;
 	private byte[] imageDetails;
-
-	public Image() {
-
+	
+	public Image(){
+		
 	}
 
-	public Image(String name, String type, byte[] imageDetails) {
-		super();
+	// constructor,getters and setters,toString() method
+	public Image(String name, String status, byte[] imageDetails) {
 		this.name = name;
-		this.type = type;
+		this.status = status;
 		this.imageDetails = imageDetails;
 	}
 
@@ -39,20 +41,13 @@ public class Image {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getStatus() {
+		return status;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public byte[] getImageDetails() {
@@ -61,6 +56,20 @@ public class Image {
 
 	public void setImageDetails(byte[] imageDetails) {
 		this.imageDetails = imageDetails;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Image [id=" + id + ", name=" + name + ", status=" + status + ", imageDetails="
+				+ Arrays.toString(imageDetails) + "]";
 	}
 
 }

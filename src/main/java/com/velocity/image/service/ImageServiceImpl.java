@@ -10,24 +10,24 @@ import com.velocity.model.Image;
 import com.velocity.repository.ImageRepository;
 
 @Service
-public class ImageServiceImpl implements ImageService{
+public class ImageServiceImpl implements ImageService {
 
 	@Autowired
 	private ImageRepository imageRepository;
-	
+
 	@Override
-	public Image uploadImage(MultipartFile file) throws IOException {
-		String filename = file.getOriginalFilename();
-		Image image = new Image(filename, file.getContentType(), file.getBytes());
-		Image image2 = imageRepository.save(image);
-		return image2;
+	public Image saveImage(MultipartFile multipartFile) throws IOException {
+		String originalFilename = multipartFile.getOriginalFilename();
+		String contentType = multipartFile.getContentType();
+		byte[] bytes = multipartFile.getBytes();
+		Image image = new Image(originalFilename, contentType, bytes);
+		Image images = imageRepository.save(image);
+		return images;
 	}
 
 	@Override
-	public Image getImage(Integer id) {
+	public Image getImage(int id) {
 		Image image = imageRepository.findById(id);
 		return image;
 	}
-
-	
 }

@@ -30,12 +30,14 @@ public class Customer {
 	@Size(min = 3, max = 10)
 	private String city;
 
+
 	@OneToMany(mappedBy = "customerId")
 	@NotEmpty
 	private List<Policy> policyList;
 
 	@OneToMany(mappedBy = "customerId")
 	@NotEmpty
+
 	private List<Claim> claimList;
 
 	public int getId() {

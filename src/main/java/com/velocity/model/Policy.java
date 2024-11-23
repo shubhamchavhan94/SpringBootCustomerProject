@@ -4,11 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "policy")
@@ -30,6 +32,7 @@ public class Policy {
 
 //	@JoinColumn(name = "customerId")
 	private Integer customerId;
+
 
 	public int getId() {
 		return id;
@@ -55,16 +58,19 @@ public class Policy {
 		this.status = status;
 	}
 
+
 	public Integer getCustomerId() {
 		return customerId;
 	}
 
 	public void setCustomerId(Integer customer) {
 		this.customerId = customer;
+
 	}
 
 	@Override
 	public String toString() {
+
 		return "Policy [id=" + id + ", name=" + name + ", status=" + status + ", customer=" + customerId + "]";
 	}
 

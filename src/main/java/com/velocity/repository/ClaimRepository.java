@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.velocity.model.Claim;
 
 @Repository
+
 public interface ClaimRepository extends JpaRepository<Claim, Integer>{
 
 }

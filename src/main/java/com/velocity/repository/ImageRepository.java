@@ -1,14 +1,17 @@
 package com.velocity.repository;
 
-import java.io.Serializable;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.stereotype.Repository;
 
 import com.velocity.model.Image;
 
 @Repository
-public interface ImageRepository extends CrudRepository<Image, Serializable>{
 
-	public Image findById(Integer id);
+public interface ImageRepository extends JpaRepository<Image, Integer> {
+	
+	//get operation on file based on id
+	public Image findById(int id);
+
 }

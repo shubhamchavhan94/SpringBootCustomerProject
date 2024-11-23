@@ -16,6 +16,7 @@ public class ClaimServiceImpl implements ClaimService {
 	public Claim saveClaim(Claim claim) {
 		Claim claim2 = claimRepository.save(claim);
 		return claim2;
+
 	}
 
 }
