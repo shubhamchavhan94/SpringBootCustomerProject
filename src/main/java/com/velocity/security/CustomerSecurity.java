@@ -45,8 +45,10 @@ public class CustomerSecurity {
 						  .requestMatchers(HttpMethod.GET, "/api/customers/getall").hasRole("EMPLOYEE")
 						  .requestMatchers(HttpMethod.GET,"/api/customers/**").hasRole("EMPLOYEE")
 						  .requestMatchers(HttpMethod.GET,"/api/images/**").hasRole("EMPLOYEE")
+						  .requestMatchers(HttpMethod.GET,"/api/sendmailapp").hasRole("EMPLOYEE")
 						  .requestMatchers(HttpMethod.POST, "/api/customers/save").hasRole("MANAGER")
 						  .requestMatchers(HttpMethod.POST, "/api/images").hasRole("MANAGER")
+						  .requestMatchers(HttpMethod.POST,"/api/send-email-attachment").hasRole("MANAGER")
 						  .requestMatchers(HttpMethod.PUT,"/api/customers/update").hasRole("MANAGER")
 						  .requestMatchers(HttpMethod.DELETE, "/api/customers/delete/**").hasRole("ADMIN")
 				);
