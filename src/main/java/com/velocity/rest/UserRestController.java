@@ -2,6 +2,7 @@ package com.velocity.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,8 +14,11 @@ import com.velocity.model.EmailRequest;
 import com.velocity.model.User;
 import com.velocity.service.MailService;
 
+import jakarta.validation.constraints.Email;
+
 @RestController
 @RequestMapping("/api")
+@Validated
 public class UserRestController {
 
 	@Autowired
@@ -24,7 +28,7 @@ public class UserRestController {
 	private User user;
 
 	@GetMapping("/sendmailapp")
-	public String sendingMail(@RequestParam("Email") String email) {
+	public String sendingMail(@Email @RequestParam("Email") String email) {
 
 		user.setEmailAddress(email);
 

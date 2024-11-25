@@ -2,9 +2,12 @@ package com.velocity.model;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.validation.constraints.Email;
+
 @Component
 public class User {
 
+	@Email
 	private String emailAddress;
 	
 	public String getEmailAddress() {
