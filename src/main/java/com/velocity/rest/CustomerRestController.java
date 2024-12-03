@@ -2,6 +2,8 @@ package com.velocity.rest;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.velocity.model.Claim;
 import com.velocity.model.Customer;
 import com.velocity.model.Policy;
@@ -23,11 +24,11 @@ import com.velocity.service.PolicyService;
 
 import jakarta.validation.Valid;
 
-
 @RestController
 @RequestMapping("/api")
 public class CustomerRestController {
 
+	Logger logger = LoggerFactory.getLogger(CustomerRestController.class);
 	@Autowired
 	private CustomerService customerService;
 
@@ -68,6 +69,7 @@ public class CustomerRestController {
 	// save customer operation
 	@PostMapping("/customers/save")
 	public Customer saveCustomer(@RequestBody @Valid Customer customer) {
+		logger.info("Inside saveCustomer() method of rest controller.");
 		Customer saveCustomer = customerService.saveCustomer(customer);
 		return saveCustomer;
 	}
@@ -97,30 +99,29 @@ public class CustomerRestController {
 
 	@PostMapping("/customers/save/policy/claim")
 	public Customer saveCustomerPolicyClaim(@RequestBody @Valid Customer customer) {
-		
+
 		// save customer
 		Customer saveCustomer = customerService.saveCustomer(customer);
-		
+
 		// multiple policy
-		
+
 		List<Policy> policyList = saveCustomer.getPolicyList();
-		
-		for(Policy policy : policyList)
-		{
+
+		for (Policy policy : policyList) {
 			policy.setCustomerId(customer.getId());
 			policyService.savePolicy(policy);
 		}
-		
+
 		// multiple claim
-		
+
 		List<Claim> claimList = saveCustomer.getClaimList();
-		
-		for(Claim claim : claimList) {
+
+		for (Claim claim : claimList) {
 			claim.setCustomerId(customer.getId());
 			claimService.saveClaim(claim);
 		}
-		
+
 		return saveCustomer;
-		
+
 	}
 }
