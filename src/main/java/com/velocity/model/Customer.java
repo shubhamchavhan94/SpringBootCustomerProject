@@ -36,7 +36,6 @@ public class Customer {
 
 	@OneToMany(mappedBy = "customerId")
 	@NotEmpty
-
 	private List<Claim> claimList;
 
 	public int getId() {

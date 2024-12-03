@@ -3,6 +3,8 @@ package com.velocity.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +18,9 @@ import com.velocity.repository.CustomerRepository;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
+	//adding logger here
+	private static final Logger log = LoggerFactory.getLogger(CustomerServiceImpl.class);
+	
 	@Autowired
 	private CustomerRepository customerRepository;
 
@@ -74,6 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer saveCustomer(Customer customer) {
+		log.info("Inside SaveCustomer() method of CustomerServiceImpl class.");
 		Customer customer2 = customerRepository.save(customer);
 		return customer2;
 	}
